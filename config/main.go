@@ -2,6 +2,7 @@ package config
 
 import (
 	attendance "github.com/JubaerHossain/golang_restapi/services/attendance/models"
+	user "github.com/JubaerHossain/golang_restapi/services/users/models"
 	"github.com/JubaerHossain/gomd/config"
 )
 
@@ -13,4 +14,5 @@ func Register() {
 
 func Boot() {
 	attendance.AttendanceSetup()
+	user.UsersSetup()
 }

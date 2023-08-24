@@ -2,6 +2,7 @@ package routes
 
 import (
 	attendanceRoute "github.com/JubaerHossain/golang_restapi/services/attendance/routes"
+	userRoute "github.com/JubaerHossain/golang_restapi/services/users/routes"
 	"github.com/JubaerHossain/gomd/config"
 	. "github.com/JubaerHossain/gomd/gomd"
 	"github.com/gin-gonic/gin"
@@ -9,8 +10,8 @@ import (
 
 func Register() {
 	BaseRoute()
-
 	attendanceRoute.AttendanceSetup()
+	userRoute.UsersSetup()
 }
 
 func BaseRoute() {

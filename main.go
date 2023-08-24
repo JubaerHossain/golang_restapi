@@ -13,7 +13,6 @@ func main() {
 	routes.Register()
 
 	gomd.NoSqlConnection()
-	// gomd.DatabaseConnection()
 	config.Boot()
 
 	gomd.Run()
