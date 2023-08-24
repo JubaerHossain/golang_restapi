@@ -9,12 +9,6 @@ import (
 )
 
 func Register() {
-	BaseRoute()
-	attendanceRoute.AttendanceSetup()
-	userRoute.UsersSetup()
-}
-
-func BaseRoute() {
 	Router.GET("/", func(c *gin.Context) {
 		data := map[string]interface{}{
 			"app": config.Config.GetString("App.Name"),
@@ -23,4 +17,6 @@ func BaseRoute() {
 			Message("success").
 			Data(data).Json(c)
 	})
+	attendanceRoute.AttendanceSetup()
+	userRoute.UsersSetup()
 }
