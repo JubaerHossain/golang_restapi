@@ -2,7 +2,7 @@ package routes
 
 import (
 	"github.com/JubaerHossain/gomd/gomd"
-	c "github.com/JubaerHossain/gomd/services/attendance/controllers"
+	c "github.com/JubaerHossain/golang_restapi/services/attendance/controllers"
 )
 
 func AttendanceSetup() {

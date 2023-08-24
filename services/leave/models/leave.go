@@ -6,9 +6,9 @@ import (
 	"time"
 )
 
-var UserCollection gomd.MongoCollection
+var LeaveCollection gomd.MongoCollection
 
-type User struct {
+type Leave struct {
 	Id        primitive.ObjectID `json:"id,omitempty" bson:"_id"`
     Task      string             `json:"task" bson:"task"`
     Status    string             `json:"status" bson:"status"`
@@ -16,6 +16,6 @@ type User struct {
     UpdatedAt time.Time          `json:"updated_at,omitempty" bson:"updated_at"`
 }
 
-func UserSetup() {
-	UserCollection = gomd.Mongo.Collection("users")
+func LeaveSetup() {
+	LeaveCollection = gomd.Mongo.Collection("leaves")
 }

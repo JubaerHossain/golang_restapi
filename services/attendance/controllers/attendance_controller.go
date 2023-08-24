@@ -3,8 +3,8 @@ package controllers
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/JubaerHossain/gomd/gomd"
-	"github.com/JubaerHossain/gomd/services/attendance/validation"
-	"github.com/JubaerHossain/gomd/services/attendance/services"
+	"github.com/JubaerHossain/golang_restapi/services/attendance/validation"
+	"github.com/JubaerHossain/golang_restapi/services/attendance/services"
 	"net/http"
 )
 func AttendanceIndex() gin.HandlerFunc {

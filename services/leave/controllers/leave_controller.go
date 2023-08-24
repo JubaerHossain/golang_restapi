@@ -3,11 +3,11 @@ package controllers
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/JubaerHossain/gomd/gomd"
-	"github.com/JubaerHossain/gomd/services/user/validation"
-	"github.com/JubaerHossain/gomd/services/user/services"
+	"github.com/JubaerHossain/golang_restapi/services/leave/validation"
+	"github.com/JubaerHossain/golang_restapi/services/leave/services"
 	"net/http"
 )
-func UserIndex() gin.HandlerFunc {
+func LeaveIndex() gin.HandlerFunc {
 	return func(c *gin.Context) {
         page := c.DefaultQuery("page", "1")
         limit := c.DefaultQuery("limit", "10")
@@ -18,18 +18,18 @@ func UserIndex() gin.HandlerFunc {
         filter["limit"] = limit
         filter["status"] = status
 
-        users, paginate := services.AllUser(filter)
+        leaves, paginate := services.AllLeave(filter)
 
-        gomd.Res.Code(200).Data(users).Raw(map[string]interface{}{
+        gomd.Res.Code(200).Data(leaves).Raw(map[string]interface{}{
             "meta": paginate,
         }).Json(c)
 	}
 }
 
 
-func UserCreate() gin.HandlerFunc {
+func LeaveCreate() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		var createUser validation.CreateUserRequest
+		var createLeave validation.CreateLeaveRequest
 
 		defer func() {
 			if err := recover(); err != nil {
@@ -37,19 +37,19 @@ func UserCreate() gin.HandlerFunc {
 			}
 		}()
 
-		if err := c.ShouldBind(&createUser); err != nil {
+		if err := c.ShouldBind(&createLeave); err != nil {
 			gomd.Res.Code(http.StatusBadRequest).Message("Bad Request").Data(err.Error()).AbortWithStatusJSON(c)
 			return
 		}
 
-		user := services.CreateAUser(createUser)
+		leave := services.CreateALeave(createLeave)
 
-		gomd.Res.Code(http.StatusCreated).Message("success").Data(user).Json(c)
+		gomd.Res.Code(http.StatusCreated).Message("success").Data(leave).Json(c)
 	}
 }
 
 
-func UserShow() gin.HandlerFunc {
+func LeaveShow() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		defer func() {
 			if err := recover(); err != nil {
@@ -57,18 +57,18 @@ func UserShow() gin.HandlerFunc {
 			}
 		}()
 
-		userId := c.Param("userId")
+		leaveId := c.Param("leaveId")
 
-		user := services.AUser(userId)
+		leave := services.ALeave(leaveId)
 
-		gomd.Res.Code(http.StatusOK).Message("success").Data(user).Json(c)
+		gomd.Res.Code(http.StatusOK).Message("success").Data(leave).Json(c)
 	}
 }
 
 
-func UserUpdate() gin.HandlerFunc {
+func LeaveUpdate() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		var updateUser validation.UpdateUserRequest
+		var updateLeave validation.UpdateLeaveRequest
 
 		defer func() {
 			if err := recover(); err != nil {
@@ -76,26 +76,26 @@ func UserUpdate() gin.HandlerFunc {
 			}
 		}()
 
-		userId := c.Param("userId")
+		leaveId := c.Param("leaveId")
 
-		if err := c.ShouldBind(&updateUser); err != nil {
+		if err := c.ShouldBind(&updateLeave); err != nil {
 			gomd.Res.Code(http.StatusBadRequest).Message(http.StatusText(http.StatusBadRequest)).Data(err.Error()).AbortWithStatusJSON(c)
 			return
 		}
 
-		user, err := services.UpdateAUser(userId, updateUser)
+		leave, err := services.UpdateALeave(leaveId, updateLeave)
 
 		if err != nil {
 			gomd.Res.Code(http.StatusInternalServerError).Message(http.StatusText(http.StatusInternalServerError)).Json(c)
 			return
 		}
 
-		gomd.Res.Code(http.StatusOK).Message("Successfully Updated !!!").Data(user).Json(c)
+		gomd.Res.Code(http.StatusOK).Message("Successfully Updated !!!").Data(leave).Json(c)
 	}
 }
 
 
-func UserDelete() gin.HandlerFunc {
+func LeaveDelete() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		defer func() {
 			if err := recover(); err != nil {
@@ -103,8 +103,8 @@ func UserDelete() gin.HandlerFunc {
 			}
 		}()
 
-		userId := c.Param("userId")
-		err := services.DeleteAUser(userId)
+		leaveId := c.Param("leaveId")
+		err := services.DeleteALeave(leaveId)
 
 		if !err {
 			gomd.Res.Code(http.StatusInternalServerError).Message("something wrong").Json(c)

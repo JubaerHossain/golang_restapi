@@ -3,8 +3,8 @@ package services
 import (
 	"fmt"
 	pagination "github.com/gobeam/mongo-go-pagination"
-	"github.com/JubaerHossain/gomd/services/attendance/validation"
-	"github.com/JubaerHossain/gomd/services/attendance/models"
+	"github.com/JubaerHossain/golang_restapi/services/attendance/validation"
+	"github.com/JubaerHossain/golang_restapi/services/attendance/models"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo/options"

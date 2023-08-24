@@ -1,7 +1,9 @@
 package main
 
-import "github.com/JubaerHossain/gomd"
+import (
+	"github.com/JubaerHossain/gomd/cli"
+)
 
 func main() {
-	gomd.Run()
+	cli.Run()
 }
